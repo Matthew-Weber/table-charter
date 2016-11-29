@@ -1,0 +1,26 @@
+<div class="table-responsive">
+	<table id="dataTable1" cellspacing="1" class="tablesorter table table-condensed">
+	  <thead>
+	    <tr>
+			<% t.self.headerDisplay.forEach(function(d){%>
+				<th><%=d%></th>
+			<%})%>
+	    </tr>
+	  </thead>
+	  <tbody>
+			<% t.data.forEach(function(row){%>
+				<tr role="row">
+					<% t.self.dataColumnHeaders.forEach(function(header, index){											
+						var value = row[header];
+						var formater = t.self[t.self.formats[index]] || t.self.text
+						if (index == 0){%>
+							<th><%=value%></th>
+						<%}else{%>
+							<td class="<% if(header == t.self.initialSort){%>highlight <%}%> <%=header%>"><%=formater(value)%></td>	
+						
+					<%}})%>
+				</tr>
+			<%})%>	  
+	  </tbody>
+	</table>
+</div>

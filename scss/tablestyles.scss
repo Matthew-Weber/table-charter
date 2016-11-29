@@ -1,0 +1,123 @@
+//tablesorter
+.table-responsive{
+	  border:none !important;
+
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100% ;
+  text-align: left;
+  margin-top:22px;
+}
+
+thead{
+	border-bottom: 5px solid black;
+	margin-bottom: 20px !important;
+	vertical-align: bottom;		
+
+	th {
+		text-transform: uppercase;
+		text-align: left;
+		padding-top: 2px;
+		vertical-align: bottom; 
+		font-size:11pt;
+	
+		 &:active{
+			outline: none;
+		 }
+		 &:focus{
+			outline: none;	 
+		 }
+	}
+	
+	tr{
+		th{
+			padding-bottom: 3px;
+			padding-left: 10px;
+			white-space: normal !important;	
+			&:first-of-type{
+				padding-left:0px;				
+			}
+			&:last-of-type{
+				width:150px ;
+			
+			}			
+		}				
+	}
+}
+
+tbody{
+	th{
+		border-right:2px solid #CCCCCB;
+		width: 100px !important;
+		white-space: normal !important;
+		line-height: 1.2;
+		font-weight: 600;
+		padding-right: 20px;
+		width:250px !important;
+		&.highlight{		
+			background-color: rgba(204,204,204,0.32);
+		}
+	}
+
+	tr{
+		cursor: pointer;
+		height:30px !important;
+		line-height: 30px;
+		margin-left:20px;
+		border-bottom: 1px solid #AFBABF;
+		&:hover {
+			background-color: black !important;
+			color:white;	
+		}
+		&:first-child{
+			td{ 
+				padding-top: 4px;
+			}
+			th{ 
+				padding-top: 4px;
+			}
+		}
+
+		td{
+			padding-top: 10px;
+			padding-left: 10px;
+			line-height: 1.2;
+			padding-bottom: 10px;
+			border-right:1px solid #CCCCCB;
+			&.highlight{
+				background-color: rgba(204,204,204,0.32);
+			}
+			&:last-of-type{
+				border-right:0px solid #CCCCCB;
+			}
+			svg{
+				display:block;
+			}
+		}
+	}
+
+	td {
+		padding: 0;
+		border-left: 0;
+	}	
+}
+
+.tablesorter-header {
+    background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==);
+	background-repeat: no-repeat;
+	background-position: right 5px center;
+	padding: 4px 20px 4px 4px;
+	cursor: pointer;
+}
+
+
+.tablesorter-headerAsc {
+	background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjI8Bya2wnINUMopZAQA7);
+}
+
+.tablesorter-headerDesc {
+	background-image:url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjB+gC+jP2ptn0WskLQA7);
+}
+
