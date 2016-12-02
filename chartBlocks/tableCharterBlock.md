@@ -12,11 +12,11 @@
 //					if (d == "0"){return}
 //					return "$"+self.oneDecimal(d)+" mln"
 //				}, 
-//				template:Reuters.Template.tabletemplate,				
+//				template:Reuters.Graphics.Template.tabletemplate,				
 //				barFill:function(d){
 //					var self = this;
 //					return cyan3
 //				}
-//	            template: Reuters.Template.tabletemplate,
+//	            template: Reuters.Graphics.Template.tabletemplate,
 
 			});
