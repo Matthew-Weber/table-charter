@@ -1,6 +1,6 @@
 			Reuters.Graphics.tablegraphic = new Reuters.Graphics.SortableTable({
-				el: "#reuters-table",
-				dataURL:"http://sfb-proxy-prod-1197393060.us-east-1.elb.amazonaws.com/json/mw_candidate_twitter",
+				el: "#reutersGraphic-chart1",
+				dataURL:"//d3sl9l9bcxfb5q.cloudfront.net/json/mw_candidate_twitter",
 				dataColumnHeaders:["name","year", "tweets", "followers", "following"],
 				headerDisplay:["Candidate", "Joined", "Tweets", "Followers", "Following"],
 				initialSort:"tweets",
@@ -12,11 +12,28 @@
 //					if (d == "0"){return}
 //					return "$"+self.oneDecimal(d)+" mln"
 //				}, 
-//				template:Reuters.Graphics.Template.tabletemplate,				
+//				template:Reuters.Template.tabletemplate,				
 //				barFill:function(d){
 //					var self = this;
 //					return cyan3
 //				}
-//	            template: Reuters.Graphics.Template.tabletemplate,
+//	            template: Reuters.Template.tabletemplate,
 
 			});
+			
+Reuters.Graphics.tablegraphic.on("renderChart:start", function(evt){
+    var self = this;
+    
+})		
+Reuters.Graphics.tablegraphic.on("renderChart:end", function(evt){
+    var self = this;
+    
+})		
+Reuters.Graphics.tablegraphic.on("update:start", function(evt){
+    var self = this;
+    
+})		
+Reuters.Graphics.tablegraphic.on("update:end", function(evt){
+    var self = this;
+    
+})		

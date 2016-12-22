@@ -95,7 +95,7 @@ Reuters.Graphics.SortableTable = Backbone.View.extend({
 	},
 	baseRender: function() { 
 		var self = this;
-				
+		self.trigger("renderChart:start")		
 		self.$el.html(self.template({data:self.tableData, self:self}));
 
 		self.svgWidth = self.svgwidth;
@@ -151,14 +151,16 @@ Reuters.Graphics.SortableTable = Backbone.View.extend({
 		$(window).on("resize", _.debounce(function(event) {
 			if (self.chartcol){
 				self.chartcol.forEach(function(d){
-					self.resize(d);				
+					self.update(d);				
 				});
 			}						
 		},100));	
+		self.trigger("renderChart:end")		
 
 	},
-	resize: function(colName){
+	update: function(colName){
 		var self = this;
+		self.trigger("update:start")		
 
 		if ($(window).width() <600 ){
 			self.svgWidth = 100;
@@ -181,6 +183,7 @@ Reuters.Graphics.SortableTable = Backbone.View.extend({
 			.attr("x",  function(d){								
 				return self.barScale[colName](  Math.min(0,parseFloat(d[colName]))  );
 			});
+		self.trigger("update:emd")		
 		
 	}
 //end of view
