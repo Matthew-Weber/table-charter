@@ -1,4 +1,20 @@
 //tablesorter
+
+.table-mobile-version{
+	font-size:$font-size-sm;
+	.header{
+		font-weight: 700;
+		font-size:$font-size-base;
+	}
+	.category{
+		//text-transform: uppercase;
+	}
+	.value{
+		text-align: right;
+		font-weight: 600;
+	}
+}
+
 .table-responsive{
 	  border:none !important;
 
@@ -121,4 +137,5 @@ tbody{
 .tablesorter-headerDesc {
 	background-image:url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjB+gC+jP2ptn0WskLQA7);
 }
+
 

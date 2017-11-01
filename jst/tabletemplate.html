@@ -1,4 +1,4 @@
-<div class="table-responsive">
+<div class="table-responsive hidden-xs-down">
 	<table id="dataTable1" cellspacing="1" class="tablesorter table table-condensed">
 	  <thead>
 	    <tr>
@@ -23,4 +23,22 @@
 			<%})%>	  
 	  </tbody>
 	</table>
+</div>
+<div class="table-mobile-version hidden-sm-up">
+	<%t.data.forEach(function(d){
+		t.self.dataColumnHeaders.forEach(function(key,i){
+			var formater = t.self[t.self.formats[i]] || t.self.text%>
+			<%if(i ==0){%>
+				<div class="header"><%=formater(d[key])%></div>
+			<%}else{%>
+				<div class="row">
+					<div class="category col-xs-6"><%=t.self.headerDisplay[i]%></div>
+					<div class="value text-right col-xs-6"><%=formater(d[key])%></div>
+				</div>
+			<%}%>
+		<%})%>	
+	<hr>
+
+	<%})%>
+
 </div>

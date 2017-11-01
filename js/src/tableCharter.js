@@ -57,7 +57,6 @@ Reuters.Graphics.SortableTable = Backbone.View.extend({
 		self.dataColumnHeaders = self.dataColumnHeaders || _.keys(data[0]);
 		self.headerDisplay = self.headerDisplay || self.dataColumnHeaders;
 		self.initialSort = self.initialSort || self.dataColumnHeaders[1];
-		
 		self.baseRender();
 
 		
@@ -93,23 +92,8 @@ Reuters.Graphics.SortableTable = Backbone.View.extend({
 				return self.barFill(d);
 			});
 	},
-	baseRender: function() { 
+	addSorters:function(){
 		var self = this;
-		self.trigger("renderChart:start")		
-		self.$el.html(self.template({data:self.tableData, self:self}));
-
-		self.svgWidth = self.svgwidth;
-		
-		if ($(window).width() <600 ){
-			self.svgWidth = 100;
-		}
-		
-		if (self.chartcol){
-			self.chartcol.forEach(function(d){
-				self.addBars(d);		
-			});
-		}
-		
 		$.tablesorter.addParser({ 
 	        // set a unique id 
 	        id: 'toNumber', 
@@ -123,8 +107,8 @@ Reuters.Graphics.SortableTable = Backbone.View.extend({
 	        }, 
 	        // set type, either numeric or text 
 	        type: 'numeric' 
-	    });
-			
+	    });				
+
 		$("#" +self.targetDiv+" table").tablesorter({
 			sortList: [[self.dataColumnHeaders.indexOf(self.initialSort),1]],
 			 headers: { 
@@ -133,6 +117,29 @@ Reuters.Graphics.SortableTable = Backbone.View.extend({
 			    },			               
 			}	  
 		});
+	},
+	
+	
+	baseRender: function() { 
+		var self = this;
+		self.trigger("renderChart:start")		
+		self.$el.html(self.template({data:self.tableData, self:self}));
+		console.log(self.tableData);
+		self.svgWidth = self.svgwidth;
+		
+		if ($(window).width() <600 ){
+			self.svgWidth = 100;
+		}
+		
+		if (self.chartcol){
+			self.chartcol.forEach(function(d){
+				self.addBars(d);		
+			});
+		}
+		
+		self.addSorters()
+			
+
 		
 		self.tableRows = d3.selectAll("#" +self.targetDiv+" tbody tr");
 		self.tableCells = self.tableRows.selectAll("th, td");

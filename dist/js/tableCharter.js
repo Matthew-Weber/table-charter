@@ -1,46 +1,62 @@
 (function () {
-  window["Reuters"] = window["Reuters"] || {};
-  window["Reuters"]["Graphics"] = window["Reuters"]["Graphics"] || {};
-  window["Reuters"]["Graphics"]["tableCharter"] = window["Reuters"]["Graphics"]["tableCharter"] || {};
-  window["Reuters"]["Graphics"]["tableCharter"]["Template"] = window["Reuters"]["Graphics"]["tableCharter"]["Template"] || {};
+	window["Reuters"] = window["Reuters"] || {};
+	window["Reuters"]["Graphics"] = window["Reuters"]["Graphics"] || {};
+	window["Reuters"]["Graphics"]["tableCharter"] = window["Reuters"]["Graphics"]["tableCharter"] || {};
+	window["Reuters"]["Graphics"]["tableCharter"]["Template"] = window["Reuters"]["Graphics"]["tableCharter"]["Template"] || {};
 
-  window["Reuters"]["Graphics"]["tableCharter"]["Template"]["tabletemplate"] = function (t) {
-    var __t,
-        __p = '',
-        __j = Array.prototype.join;
-    function print() {
-      __p += __j.call(arguments, '');
-    }
-    __p += '<div class="table-responsive">\n	<table id="dataTable1" cellspacing="1" class="tablesorter table table-condensed">\n	  <thead>\n	    <tr>\n			';
-    t.self.headerDisplay.forEach(function (d) {
-      ;
-      __p += '\n				<th>' + ((__t = d) == null ? '' : __t) + '</th>\n			';
-    });
-    __p += '\n	    </tr>\n	  </thead>\n	  <tbody>\n			';
-    t.data.forEach(function (row) {
-      ;
-      __p += '\n				<tr role="row">\n					';
-      t.self.dataColumnHeaders.forEach(function (header, index) {
-        var value = row[header];
-        var formater = t.self[t.self.formats[index]] || t.self.text;
-        if (index == 0) {
-          ;
-          __p += '\n							<th>' + ((__t = value) == null ? '' : __t) + '</th>\n						';
-        } else {
-          ;
-          __p += '\n							<td class="';
-          if (header == t.self.initialSort) {
-            ;
-            __p += 'highlight ';
-          };
-          __p += ' ' + ((__t = header) == null ? '' : __t) + '">' + ((__t = formater(value)) == null ? '' : __t) + '</td>	\n						\n					';
-        }
-      });
-      __p += '\n				</tr>\n			';
-    });
-    __p += '	  \n	  </tbody>\n	</table>\n</div>';
-    return __p;
-  };
+	window["Reuters"]["Graphics"]["tableCharter"]["Template"]["tabletemplate"] = function (t) {
+		var __t,
+		    __p = '',
+		    __j = Array.prototype.join;
+		function print() {
+			__p += __j.call(arguments, '');
+		}
+		__p += '<div class="table-responsive hidden-xs-down">\n	<table id="dataTable1" cellspacing="1" class="tablesorter table table-condensed">\n	  <thead>\n	    <tr>\n			';
+		t.self.headerDisplay.forEach(function (d) {
+			;
+			__p += '\n				<th>' + ((__t = d) == null ? '' : __t) + '</th>\n			';
+		});
+		__p += '\n	    </tr>\n	  </thead>\n	  <tbody>\n			';
+		t.data.forEach(function (row) {
+			;
+			__p += '\n				<tr role="row">\n					';
+			t.self.dataColumnHeaders.forEach(function (header, index) {
+				var value = row[header];
+				var formater = t.self[t.self.formats[index]] || t.self.text;
+				if (index == 0) {
+					;
+					__p += '\n							<th>' + ((__t = value) == null ? '' : __t) + '</th>\n						';
+				} else {
+					;
+					__p += '\n							<td class="';
+					if (header == t.self.initialSort) {
+						;
+						__p += 'highlight ';
+					};
+					__p += ' ' + ((__t = header) == null ? '' : __t) + '">' + ((__t = formater(value)) == null ? '' : __t) + '</td>	\n						\n					';
+				}
+			});
+			__p += '\n				</tr>\n			';
+		});
+		__p += '	  \n	  </tbody>\n	</table>\n</div>\n<div class="table-mobile-version hidden-sm-up">\n	';
+		t.data.forEach(function (d) {
+			t.self.dataColumnHeaders.forEach(function (key, i) {
+				var formater = t.self[t.self.formats[i]] || t.self.text;
+				__p += '\n			';
+				if (i == 0) {
+					;
+					__p += '\n				<div class="header">' + ((__t = formater(d[key])) == null ? '' : __t) + '</div>\n			';
+				} else {
+					;
+					__p += '\n				<div class="row">\n					<div class="category col-xs-6">' + ((__t = t.self.headerDisplay[i]) == null ? '' : __t) + '</div>\n					<div class="value text-right col-xs-6">' + ((__t = formater(d[key])) == null ? '' : __t) + '</div>\n				</div>\n			';
+				};
+				__p += '\n		';
+			});
+			__p += '	\n	<hr>\n\n	';
+		});
+		__p += '\n\n</div>';
+		return __p;
+	};
 })();
 Reuters = Reuters || {};
 Reuters.Graphics = Reuters.Graphics || {};
@@ -103,7 +119,6 @@ Reuters.Graphics.SortableTable = Backbone.View.extend({
 		self.dataColumnHeaders = self.dataColumnHeaders || _.keys(data[0]);
 		self.headerDisplay = self.headerDisplay || self.dataColumnHeaders;
 		self.initialSort = self.initialSort || self.dataColumnHeaders[1];
-
 		self.baseRender();
 	},
 	barFill: function barFill(d) {
@@ -127,23 +142,8 @@ Reuters.Graphics.SortableTable = Backbone.View.extend({
 			return self.barFill(d);
 		});
 	},
-	baseRender: function baseRender() {
+	addSorters: function addSorters() {
 		var self = this;
-		self.trigger("renderChart:start");
-		self.$el.html(self.template({ data: self.tableData, self: self }));
-
-		self.svgWidth = self.svgwidth;
-
-		if ($(window).width() < 600) {
-			self.svgWidth = 100;
-		}
-
-		if (self.chartcol) {
-			self.chartcol.forEach(function (d) {
-				self.addBars(d);
-			});
-		}
-
 		$.tablesorter.addParser({
 			// set a unique id 
 			id: 'toNumber',
@@ -167,6 +167,26 @@ Reuters.Graphics.SortableTable = Backbone.View.extend({
 				}
 			}
 		});
+	},
+
+	baseRender: function baseRender() {
+		var self = this;
+		self.trigger("renderChart:start");
+		self.$el.html(self.template({ data: self.tableData, self: self }));
+		console.log(self.tableData);
+		self.svgWidth = self.svgwidth;
+
+		if ($(window).width() < 600) {
+			self.svgWidth = 100;
+		}
+
+		if (self.chartcol) {
+			self.chartcol.forEach(function (d) {
+				self.addBars(d);
+			});
+		}
+
+		self.addSorters();
 
 		self.tableRows = d3.selectAll("#" + self.targetDiv + " tbody tr");
 		self.tableCells = self.tableRows.selectAll("th, td");
