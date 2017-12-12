@@ -48,7 +48,7 @@
 					__p += '\n				<div class="header">' + ((__t = formater(d[key])) == null ? '' : __t) + '</div>\n			';
 				} else {
 					;
-					__p += '\n				<div class="row">\n					<div class="category col-xs-6">' + ((__t = t.self.headerDisplay[i]) == null ? '' : __t) + '</div>\n					<div class="value text-right col-xs-6">' + ((__t = formater(d[key])) == null ? '' : __t) + '</div>\n				</div>\n			';
+					__p += '\n				<div class="row">\n					<div class="category col-6">' + ((__t = t.self.headerDisplay[i]) == null ? '' : __t) + '</div>\n					<div class="value text-right col-6">' + ((__t = formater(d[key])) == null ? '' : __t) + '</div>\n				</div>\n			';
 				};
 				__p += '\n		';
 			});
