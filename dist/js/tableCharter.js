@@ -121,7 +121,7 @@ Reuters.Graphics.SortableTable = Backbone.View.extend({
 		self.initialSort = self.initialSort || self.dataColumnHeaders[1];
 		self.baseRender();
 	},
-	barFill: function barFill(d) {
+	barFill: function barFill(d, colName) {
 		var self = this;
 		return cyan3;
 	},
@@ -139,7 +139,7 @@ Reuters.Graphics.SortableTable = Backbone.View.extend({
 		}).attr("x", function (d) {
 			return self.barScale[colName](Math.min(0, parseFloat(d[colName])));
 		}).style("fill", function (d) {
-			return self.barFill(d);
+			return self.barFill(d, colName);
 		});
 	},
 	addSorters: function addSorters() {

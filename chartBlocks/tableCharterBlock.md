@@ -13,7 +13,7 @@
 //					return "$"+self.oneDecimal(d)+" mln"
 //				}, 
 //				template:Reuters.Graphics.Template.tabletemplate,				
-//				barFill:function(d){
+//				barFill:function(d,colName){
 //					var self = this;
 //					return cyan3
 //				}

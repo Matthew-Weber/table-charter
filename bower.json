@@ -11,7 +11,7 @@
     "charter-commons": "https://github.com/Matthew-Weber/charter-commons.git#*",
     "jquery.tablesorter": "~2.24.5"
   },   
-  "version": "0.0.6",
+  "version": "0.0.7",
    "ignore": [
     "/.*"
   ]
